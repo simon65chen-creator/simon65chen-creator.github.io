@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Italy Smart Journey Planner - Offline</title>
+<style>
+:root{--ink:#15352d;--green:#147b59;--red:#cf4b4d;--cream:#f7f3ea;--card:#fff;--line:#ded8cb;--muted:#6d7c77}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Noto Sans TC",system-ui,sans-serif;color:var(--ink);background:var(--cream)}button,input{font:inherit}header{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:#fffc;border-bottom:1px solid var(--line)}.brand{font-weight:950;letter-spacing:.05em}.brand small{display:block;font-weight:600;color:var(--muted);letter-spacing:0}.flag{display:inline-grid;grid-template-columns:repeat(3,10px);height:21px;vertical-align:middle;margin-right:10px;border-radius:3px;overflow:hidden}.flag i:nth-child(1){background:#169b62}.flag i:nth-child(2){background:white}.flag i:nth-child(3){background:#ce2b37}.app{height:calc(100vh - 68px);display:grid;grid-template-columns:320px minmax(500px,1fr);grid-template-rows:minmax(520px,1fr) auto}.panel{overflow:auto;background:#faf8f2}.left{border-right:1px solid var(--line)}.right{grid-column:1/-1;border-top:1px solid var(--line);background:#f4f0e7;display:grid;grid-template-columns:320px 300px 1fr;align-items:start;max-height:310px}.right .section{border-top:0!important;border-right:1px solid var(--line);height:100%;overflow:auto}.right .section:last-child{border-right:0}.section{padding:17px}.section+.section{border-top:1px solid var(--line)}h2{font-size:19px;margin:0 0 7px}.help{font-size:12px;color:var(--muted);line-height:1.6}.search{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:11px;background:white}.filters{display:flex;gap:6px;margin:10px 0;overflow:auto}.chip,.btn{border:0;border-radius:10px;padding:8px 11px;cursor:pointer;font-weight:800}.chip{background:white;border:1px solid var(--line);font-size:12px;white-space:nowrap}.chip.on{background:var(--ink);color:white}.btn{background:var(--green);color:white}.btn.secondary{background:#e8f2ee;color:var(--green)}.btn.red{background:#fdeceb;color:#a43838}.cards{display:grid;gap:10px}.card{background:white;border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:0 3px 14px #15352d0b}.thumb{height:76px;border-radius:10px;margin-bottom:9px;display:grid;place-items:center;color:white;font-size:35px;background:linear-gradient(135deg,#4f8e7d,#d9b778);position:relative;overflow:hidden}.thumb:after{content:"";position:absolute;inset:auto -20px -32px;background:#fff3;width:120%;height:60px;transform:rotate(-7deg)}.title{font-weight:900}.meta{font-size:12px;color:var(--muted);line-height:1.5;margin:3px 0 9px}.add{width:100%}.maparea{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 42%,#e9f2ee,#c9ddd5)}#mapSvg{width:100%;height:100%;display:block}.sea-label{font:italic 16px Georgia;fill:#6b9992;opacity:.7}.land{fill:#eee2c8;stroke:#8d806c;stroke-width:2;filter:drop-shadow(0 8px 8px #52756b55)}.island{fill:#eee2c8;stroke:#8d806c;stroke-width:2}.route{fill:none;stroke:var(--red);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:12 8;animation:dash 16s linear infinite;filter:drop-shadow(0 3px 3px #95353b55)}@keyframes dash{to{stroke-dashoffset:-200}}.pin{cursor:pointer}.pin circle{fill:var(--green);stroke:white;stroke-width:3;filter:drop-shadow(0 3px 4px #0005)}.pin text{fill:white;font:bold 13px sans-serif;text-anchor:middle;dominant-baseline:central;pointer-events:none}.citylabel{font:bold 12px sans-serif;fill:#17352d;paint-order:stroke;stroke:#fff;stroke-width:4;stroke-linejoin:round}.mapbadge{position:absolute;left:15px;top:15px;background:#fffd;border:1px solid #fff;padding:10px 13px;border-radius:13px;box-shadow:0 8px 24px #17352d20;font-size:12px}.offline{position:absolute;right:15px;top:15px;background:#17352de8;color:white;padding:8px 11px;border-radius:999px;font-size:11px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.stat{background:white;border:1px solid var(--line);border-radius:11px;padding:9px;text-align:center}.stat strong{display:block;font-size:18px}.stat span{font-size:10px;color:var(--muted)}.stop{display:grid;grid-template-columns:30px 1fr 22px;gap:9px;padding:11px 0;border-bottom:1px solid var(--line)}.num{width:28px;height:28px;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-weight:900}.stop b{font-size:13px}.stop small{display:block;color:var(--muted);line-height:1.5}.x{border:0;background:none;color:#a44;font-size:20px;cursor:pointer}.empty{padding:25px;text-align:center;border:1px dashed #c9c1b3;border-radius:13px;color:var(--muted)}.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px}.controls .btn{grid-column:1/-1}.select{padding:9px;border:1px solid var(--line);border-radius:9px;background:white}.note{font-size:11px;line-height:1.5;margin-top:10px;color:#755d25;background:#fff7dc;border:1px solid #ead599;padding:9px;border-radius:10px}
+@media(max-width:980px){.app{grid-template-columns:285px 1fr;grid-template-rows:minmax(540px,1fr) auto}.right{position:static;width:auto;grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;max-height:none}.right .section:last-child{grid-column:1/-1}.maparea{min-height:540px}}@media(max-width:700px){.app{display:block;height:auto}.left{height:45vh}.maparea{height:58vh;min-height:430px}.right{display:block;max-height:none}.right .section{border-right:0;border-top:1px solid var(--line)!important}.citylabel{font-size:10px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><span class="flag"><i></i><i></i><i></i></span>ITALY SMART JOURNEY<small>完全離線單檔版</small></div><button class="btn secondary" id="demo">載入經典路線</button></header>
+<div class="app">
+<aside class="panel left"><div class="section"><h2>探索義大利</h2><div class="help">不需網路、CDN 或地圖圖磚。選擇景點後，路線會直接畫在內建的義大利向量地圖上。</div><input class="search" id="search" placeholder="搜尋城市或景點"><div class="filters" id="filters"></div><div class="cards" id="cards"></div></div></aside>
+<main class="maparea">
+<div class="mapbadge"><b>義大利行程地圖</b><br>點擊標記可查看景點，路線會動態更新</div><div class="offline">● OFFLINE MAP</div>
+<svg id="mapSvg" viewBox="0 0 650 850" role="img" aria-label="義大利離線行程地圖">
+<rect width="650" height="850" fill="transparent"/><text x="75" y="430" class="sea-label">Ligurian Sea</text><text x="390" y="620" class="sea-label">Tyrrhenian Sea</text><text x="475" y="360" class="sea-label">Adriatic Sea</text>
+<!-- stylized Italy mainland -->
+<path class="land" d="M246 55 L309 65 342 87 328 117 351 148 337 178 365 212 385 251 420 278 449 306 438 338 464 370 479 408 506 438 498 466 530 500 548 543 532 570 552 609 541 641 565 681 548 713 518 695 492 652 469 608 443 565 416 529 382 500 351 469 319 442 292 408 263 377 237 340 215 302 191 274 175 240 185 210 205 195 199 167 214 143 203 117 221 92 Z"/>
+<!-- heel and toe details --> <path class="land" d="M541 641 L584 657 613 684 598 699 561 686 548 713 518 695 Z"/><path class="land" d="M351 469 L333 512 305 542 276 548 270 530 292 497 319 442 Z"/>
+<!-- Sicily and Sardinia --> <path class="island" d="M340 690 L395 675 458 683 435 714 388 730 345 720 Z"/><path class="island" d="M190 550 L219 565 224 618 207 661 181 642 176 592 Z"/>
+<g id="routeLayer"></g><g id="pinLayer"></g>
+</svg>
+</main>
+<aside class="panel right"><div class="section"><h2>我的義大利行程</h2><div class="controls"><input id="days" class="select" type="number" min="1" value="5"><select id="mode" class="select"><option>智慧推薦</option><option>火車</option><option>自駕</option><option>巴士</option></select><select id="routeType" class="select"><option value="shortest">最短路線</option><option value="convenient">最方便路線</option></select><div id="routeHint" class="help">優先降低景點間的總距離</div><button class="btn" id="optimize">依選擇產生路線</button></div><div class="note">「最短路線」依內建座標降低總距離；「最方便路線」以離線交通便利度模型，減少跨區折返、島嶼跳轉與不適合所選交通模式的路段。這不是即時交通資訊。</div></div><div class="section"><div class="summary"><div class="stat"><strong id="count">0</strong><span>景點</span></div><div class="stat"><strong id="hours">0h</strong><span>停留</span></div><div class="stat"><strong id="distance">0km</strong><span>距離</span></div></div></div><div class="section"><div id="trip" class="empty">尚未選擇景點</div><button class="btn red" id="clear" style="width:100%;margin-top:12px">清除行程</button></div></aside>
+</div>
+<script>
+const P=[
+['milan','米蘭','米蘭大教堂','北義',45.464,9.19,120,248,125,'🏛️'],['como','科莫','科莫湖','北義',45.99,9.26,300,232,88,'🏞️'],['venice','威尼斯','聖馬可廣場','北義',45.434,12.339,180,365,153,'🛶'],['verona','維洛納','維洛納競技場','北義',45.438,10.994,120,310,145,'🏟️'],['bologna','波隆那','雙塔與老城','北義',44.495,11.343,180,326,221,'🍝'],['florence','佛羅倫斯','聖母百花大教堂','中義',43.773,11.256,180,329,292,'🎨'],['pisa','比薩','比薩斜塔','中義',43.723,10.397,120,277,301,'🗼'],['siena','錫耶納','田野廣場','中義',43.318,11.332,150,342,337,'🏘️'],['rome','羅馬','羅馬競技場','中義',41.89,12.492,180,393,431,'🏛️'],['vatican','梵蒂岡','聖彼得大教堂','中義',41.902,12.454,240,378,427,'⛪'],['naples','拿坡里','拿坡里歷史中心','南義',40.852,14.268,240,455,505,'🍕'],['pompeii','龐貝','龐貝古城','南義',40.751,14.487,240,468,526,'🏺'],['amalfi','阿瑪菲','阿瑪菲海岸','南義',40.634,14.603,360,475,548,'🌊'],['matera','馬泰拉','石窟民居區','南義',40.666,16.604,240,555,555,'🪨'],['palermo','巴勒摩','巴勒摩主教座堂','島嶼',38.114,13.356,150,374,704,'⛪'],['cagliari','卡利亞里','卡利亞里舊城','島嶼',39.224,9.122,240,201,602,'🌅']
+].map(a=>({id:a[0],city:a[1],name:a[2],region:a[3],lat:a[4],lng:a[5],duration:a[6],x:a[7],y:a[8],icon:a[9]}));
+let filter='全部';
+function safeLoadTrip(){
+  try {
+    const raw=window.localStorage.getItem('italyOfflineTrip');
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    console.info('Storage unavailable in sandbox preview; using memory-only mode.');
+    return [];
+  }
+}
+let selected=safeLoadTrip();
+const $=s=>document.querySelector(s);
+function save(){
+  try { window.localStorage.setItem('italyOfflineTrip',JSON.stringify(selected)); }
+  catch (e) { /* sandbox preview: keep data in memory for this session */ }
+}
+function chosen(){return selected.map(id=>P.find(p=>p.id===id)).filter(Boolean)}
+function km(a,b){let R=6371,la=(b.lat-a.lat)*Math.PI/180,lo=(b.lng-a.lng)*Math.PI/180,x=Math.sin(la/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(lo/2)**2;return 2*R*Math.asin(Math.sqrt(x))}
+function routePenalty(a,b,mode){
+  let cost=km(a,b);const island=p=>p.region==='島嶼';
+  if(island(a)!==island(b)) cost+=mode==='自駕'?700:420;
+  if(a.region!==b.region) cost+=55;
+  if(mode==='火車'&&(a.id==='amalfi'||b.id==='amalfi'||a.id==='matera'||b.id==='matera')) cost+=90;
+  if(mode==='巴士'&&cost>350) cost+=140;
+  if(mode==='自駕'&&(a.id==='venice'||b.id==='venice')) cost+=45;
+  return cost;
+}
+function buildGreedy(a,costFn){if(a.length<3)return [...a];let best=null,bestCost=Infinity;for(let start=0;start<a.length;start++){let left=[...a],out=[left.splice(start,1)[0]];while(left.length){let last=out.at(-1),bi=0,bc=Infinity;left.forEach((p,i)=>{let c=costFn(last,p);if(c<bc){bc=c;bi=i}});out.push(left.splice(bi,1)[0])}let c=out.slice(1).reduce((sum,p,i)=>sum+costFn(out[i],p),0);if(c<bestCost){bestCost=c;best=out}}return best}
+function optimize(a,type){let mode=$('#mode').value;return type==='convenient'?buildGreedy(a,(x,y)=>routePenalty(x,y,mode)):buildGreedy(a,km)}
+function dist(a){return a.slice(1).reduce((s,p,i)=>s+km(a[i],p),0)}
+function toggle(id){selected=selected.includes(id)?selected.filter(x=>x!==id):[...selected,id];save();render()}
+function renderFilters(){let fs=['全部','北義','中義','南義','島嶼'];$('#filters').innerHTML=fs.map(f=>`<button class="chip ${f===filter?'on':''}" data-f="${f}">${f}</button>`).join('');document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render()})}
+function renderCards(){let q=$('#search').value.trim().toLowerCase(),ps=P.filter(p=>(filter==='全部'||p.region===filter)&&(p.city+p.name).toLowerCase().includes(q));$('#cards').innerHTML=ps.map(p=>`<div class="card"><div class="thumb">${p.icon}</div><div class="title">${p.name}</div><div class="meta">${p.city} · 建議 ${p.duration} 分鐘<br>${p.region}熱門景點</div><button class="btn ${selected.includes(p.id)?'secondary':''} add" data-id="${p.id}">${selected.includes(p.id)?'✓ 已加入':'+ 加入行程'}</button></div>`).join('');document.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>toggle(b.dataset.id))}
+function renderMap(){let a=chosen(),route=$('#routeLayer'),pins=$('#pinLayer');route.innerHTML=a.length>1?`<polyline class="route" points="${a.map(p=>p.x+','+p.y).join(' ')}"/>`:'';pins.innerHTML=a.map((p,i)=>`<g class="pin" transform="translate(${p.x} ${p.y})" onclick="alert('${p.name}\\n建議停留 ${p.duration} 分鐘')"><circle r="15"/><text y="1">${i+1}</text><text class="citylabel" x="20" y="4" text-anchor="start">${p.city}</text></g>`).join('')}
+function renderTrip(){let a=chosen(),t=$('#trip');if(!a.length){t.className='empty';t.innerHTML='尚未選擇景點'}else{t.className='';t.innerHTML=a.map((p,i)=>`<div class="stop"><div class="num">${i+1}</div><div><b>${p.name}</b><small>${p.city} · ${p.duration} 分鐘${i?`<br>上一站約 ${Math.round(km(a[i-1],p))} km`:''}</small></div><button class="x" data-x="${p.id}">×</button></div>`).join('');document.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>toggle(b.dataset.x))}$('#count').textContent=a.length;$('#hours').textContent=(a.reduce((s,p)=>s+p.duration,0)/60).toFixed(1).replace('.0','')+'h';$('#distance').textContent=Math.round(dist(a))+'km'}
+function render(){renderFilters();renderCards();renderMap();renderTrip()}
+function updateRouteHint(){let convenient=$('#routeType').value==='convenient';$('#routeHint').textContent=convenient?'參考交通模式與跨區便利度，優先減少轉換和折返':'優先降低景點間的總距離'}
+$('#search').oninput=renderCards;$('#routeType').onchange=updateRouteHint;$('#mode').onchange=updateRouteHint;
+$('#optimize').onclick=()=>{let type=$('#routeType').value;selected=optimize(chosen(),type).map(p=>p.id);save();render();$('.mapbadge').innerHTML='<b>義大利行程地圖</b><br>目前：'+(type==='convenient'?'最方便路線（離線參考）':'最短路線')};$('#clear').onclick=()=>{selected=[];save();render()};$('#demo').onclick=()=>{selected=['milan','venice','florence','rome','naples','amalfi'];save();render()};updateRouteHint();render();
+</script>
+</body></html>
